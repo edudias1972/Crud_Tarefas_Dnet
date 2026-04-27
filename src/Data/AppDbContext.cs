@@ -5,13 +5,18 @@ namespace CrudTarefas.Data
 {
     public class AppDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options)
+            : base(options)
         {
         }
 
-        // Esta linha diz ao EF: "Crie uma tabela chamada 'Tarefas' baseada na classe 'Tarefa'"
+        // Tabela Tarefas
         public DbSet<Tarefa> Tarefas { get; set; }
+
+        // Tabela Usuarios
+        public DbSet<Usuario> Usuarios { get; set; }
     }
 }
+    
 
 
