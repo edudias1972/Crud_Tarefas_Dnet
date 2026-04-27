@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  tarefas-api:
+    build: .
+    container_name: tarefas-api
+    ports:
+      - "5000:8080"
+    depends_on:
+      - sqlserver
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=TarefasDB;User=sa;Password=${SA_PASSWORD};TrustServerCertificate=True
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=${SA_PASSWORD}
+    volumes:
+      - sql_data:/var/opt/mssql
+
+volumes:
+  sql_data:
