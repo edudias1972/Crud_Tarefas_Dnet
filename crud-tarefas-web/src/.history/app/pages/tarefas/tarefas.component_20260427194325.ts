@@ -13,7 +13,7 @@ import { TarefasService } from '../../services/tarefas.service';
 export class TarefasComponent {
 
   tarefas: any[] = [];
-  usuario: string = '';
+  usuario = '';
 
   constructor(
     private service: TarefasService,
@@ -22,18 +22,15 @@ export class TarefasComponent {
   ) {}
 
   ngOnInit() {
+    this.usuario = this.auth.getToken();
 
-    // ✅ PEGA USUÁRIO CORRETO
-    this.usuario = this.auth.getUserEmail() ?? 'Usuário';
-
-    // 📦 CARREGA TAREFAS DA API
     this.service.getAll().subscribe(data => {
       this.tarefas = data;
     });
   }
 
   logout() {
-    this.auth.logout();
-    this.router.navigate(['/login']);
+    this.auth.logout();        // remove token
+    this.router.navigate(['/login']); // redireciona
   }
 }

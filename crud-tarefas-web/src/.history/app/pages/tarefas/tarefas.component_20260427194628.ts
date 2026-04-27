@@ -22,11 +22,9 @@ export class TarefasComponent {
   ) {}
 
   ngOnInit() {
+    // ✅ resolve null
+    this.usuario = this.Tarefas.auth.getToken() ?? '';
 
-    // ✅ PEGA USUÁRIO CORRETO
-    this.usuario = this.auth.getUserEmail() ?? 'Usuário';
-
-    // 📦 CARREGA TAREFAS DA API
     this.service.getAll().subscribe(data => {
       this.tarefas = data;
     });

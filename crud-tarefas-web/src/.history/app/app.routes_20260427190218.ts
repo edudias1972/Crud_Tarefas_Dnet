@@ -8,5 +8,9 @@ export const routes: Routes = [
 
   { path: 'login', component: LoginComponent },
 
-  { path: 'tarefas', component: TarefasComponent }
+  {
+    path: 'tarefas',
+    component: TarefasComponent,
+    canActivate: [authGuard]
+  }
 ];

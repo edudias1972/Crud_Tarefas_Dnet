@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,20 +14,17 @@ export class LoginComponent {
   email = '';
   senha = '';
 
-  constructor(
-    private auth: AuthService,
-    private router: Router
-  ) {}
+  constructor(private auth: AuthService) {}
 
   entrar() {
     this.auth.login(this.email, this.senha)
       .subscribe({
         next: (res) => {
           this.auth.saveToken(res.token);
-          this.router.navigate(['/tarefas']); // 👉 AQUI O FLUXO FECHA
+          console.log('Login OK');
         },
-        error: () => {
-          alert('Login inválido');
+        error: (err) => {
+          console.log('Erro no login', err);
         }
       });
   }

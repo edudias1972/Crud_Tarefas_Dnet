@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
 import { TarefasService } from '../../services/tarefas.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-tarefas',
@@ -13,20 +12,16 @@ import { TarefasService } from '../../services/tarefas.service';
 export class TarefasComponent {
 
   tarefas: any[] = [];
-  usuario: string = '';
+  usuario = '';
 
   constructor(
     private service: TarefasService,
-    private auth: AuthService,
-    private router: Router
+    private auth: AuthService
   ) {}
 
   ngOnInit() {
+    this.usuario = this.auth.getToken(); // ou getUserEmail()
 
-    // ✅ PEGA USUÁRIO CORRETO
-    this.usuario = this.auth.getUserEmail() ?? 'Usuário';
-
-    // 📦 CARREGA TAREFAS DA API
     this.service.getAll().subscribe(data => {
       this.tarefas = data;
     });
@@ -34,6 +29,5 @@ export class TarefasComponent {
 
   logout() {
     this.auth.logout();
-    this.router.navigate(['/login']);
   }
 }

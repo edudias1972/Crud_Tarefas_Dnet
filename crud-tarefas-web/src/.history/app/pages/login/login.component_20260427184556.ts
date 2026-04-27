@@ -25,7 +25,7 @@ export class LoginComponent {
       .subscribe({
         next: (res) => {
           this.auth.saveToken(res.token);
-          this.router.navigate(['/tarefas']); // 👉 AQUI O FLUXO FECHA
+          this.router.navigate(['/tarefas']);
         },
         error: () => {
           alert('Login inválido');
