@@ -3,7 +3,7 @@ using CrudTarefas.Models;
 
 namespace CrudTarefas.Data
 {
-    public class AppDbContext : DbContext
+        public class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
@@ -15,6 +15,8 @@ namespace CrudTarefas.Data
 
         // Tabela Usuarios
         public DbSet<Usuario> Usuarios { get; set; }
+        // Tabela RefreshTokens
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
     }
 }
     

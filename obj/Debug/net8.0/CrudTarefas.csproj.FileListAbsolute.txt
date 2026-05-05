@@ -278,3 +278,14 @@
 /home/eduardo/Documentos/Projeto_Crud_NET/Crud_Tarefas_Dnet/obj/Debug/net8.0/CrudTarefas.pdb
 /home/eduardo/Documentos/Projeto_Crud_NET/Crud_Tarefas_Dnet/obj/Debug/net8.0/CrudTarefas.genruntimeconfig.cache
 /home/eduardo/Documentos/Projeto_Crud_NET/Crud_Tarefas_Dnet/obj/Debug/net8.0/ref/CrudTarefas.dll
+/home/eduardo/Documentos/Projeto_Crud_NET/Crud_Tarefas_Dnet/bin/Debug/net8.0/BCrypt.Net-Next.dll
+/home/eduardo/Documentos/Projeto_Crud_NET/Crud_Tarefas_Dnet/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/eduardo/Documentos/Projeto_Crud_NET/Crud_Tarefas_Dnet/bin/Debug/net8.0/crud-tarefas-web/angular.json
+/home/eduardo/Documentos/Projeto_Crud_NET/Crud_Tarefas_Dnet/bin/Debug/net8.0/crud-tarefas-web/package-lock.json
+/home/eduardo/Documentos/Projeto_Crud_NET/Crud_Tarefas_Dnet/bin/Debug/net8.0/crud-tarefas-web/package.json
+/home/eduardo/Documentos/Projeto_Crud_NET/Crud_Tarefas_Dnet/bin/Debug/net8.0/crud-tarefas-web/tsconfig.app.json
+/home/eduardo/Documentos/Projeto_Crud_NET/Crud_Tarefas_Dnet/bin/Debug/net8.0/crud-tarefas-web/tsconfig.json
+/home/eduardo/Documentos/Projeto_Crud_NET/Crud_Tarefas_Dnet/bin/Debug/net8.0/crud-tarefas-web/tsconfig.spec.json
+/home/eduardo/Documentos/Projeto_Crud_NET/Crud_Tarefas_Dnet/bin/Debug/net8.0/package-lock.json
+/home/eduardo/Documentos/Projeto_Crud_NET/Crud_Tarefas_Dnet/bin/Debug/net8.0/package.json
+/home/eduardo/Documentos/Projeto_Crud_NET/Crud_Tarefas_Dnet/bin/Debug/net8.0/crud-tarefas-web/dist/crud-tarefas-web/prerendered-routes.json

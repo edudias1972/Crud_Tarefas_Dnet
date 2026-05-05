@@ -1,0 +1,33 @@
+<nav class="navbar">
+
+  <div class="logo">
+    📦 Sistema Tarefas
+  </div>
+
+  <div class="user-area">
+    <span class="user-name">
+      👤 {{ usuario }}
+    </span>
+
+    <span class="role">
+      🛡 {{ role }}
+    </span>
+
+    <button class="btn-sair" (click)="logout()">
+      Sair
+    </button>
+  </div>
+
+</nav>
+
+<div class="container">
+
+  <h2>Minhas Tarefas</h2>
+
+  <ul>
+    <li *ngFor="let t of tarefas">
+      {{ t.id }} - {{ t.titulo }}
+    </li>
+  </ul>
+
+</div>

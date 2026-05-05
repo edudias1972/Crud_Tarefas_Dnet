@@ -1,122 +1,93 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
+import { tap } from 'rxjs/operators';
+import { isPlatformBrowser } from '@angular/common';
+import { inject, PLATFORM_ID } from '@angular/core';
 
-interface LoginRequest {
-  email: string;
-  password: string;
-}
-
-interface LoginResponse {
-  token: string;
-}
-
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
-
-  private api = 'http://localhost:5000/api/auth';
-  private tokenKey = 'token';
+  private apiUrl = environment.apiUrl;
+  private platformId = inject(PLATFORM_ID);
 
   constructor(private http: HttpClient) {}
 
-  // 🔐 LOGIN
-  login(email: string, senha: string): Observable<LoginResponse> {
-    const body: LoginRequest = {
-      email,
-      password: senha
-    };
-
-    return this.http.post<LoginResponse>(`${this.api}/login`, body);
+  // 🔐 Login
+  login(credentials: { email: string; senha: string }) {
+    return this.http
+      .post<{ token: string; role: string; email: string }>(
+        `${this.apiUrl}/Auth/login`,
+        credentials
+      )
+      .pipe(
+        tap((res) => {
+          if (isPlatformBrowser(this.platformId)) {
+            localStorage.setItem('token', res.token);
+            localStorage.setItem('role', res.role);
+            localStorage.setItem('email', res.email);
+          }
+        })
+      );
   }
 
-  // 💾 SALVAR TOKEN
-  saveToken(token: string): void {
-    localStorage.setItem(this.tokenKey, token);
-  }
-
-  // 📦 PEGAR TOKEN
+  // 🔑 Token
   getToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
+    if (isPlatformBrowser(this.platformId)) {
+      return localStorage.getItem('token');
+    }
+    return null;
   }
 
-  // 🚪 LOGOUT
+  saveToken(token: string) {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('token', token);
+    }
+  }
+
   logout(): void {
-    localStorage.removeItem(this.tokenKey);
-  }
-
-  // ✅ LOGADO?
-  isLogged(): boolean {
-    const token = this.getToken();
-
-    if (!token) return false;
-
-    if (this.isTokenExpired(token)) {
-      this.logout();
-      return false;
-    }
-
-    return true;
-  }
-
-  // 👤 EMAIL USUÁRIO
-  getUserEmail(): string | null {
-    const payload = this.getPayload();
-
-    return (
-      payload?.email ||
-      payload?.unique_name ||
-      payload?.sub ||
-      null
-    );
-  }
-
-  // 🛡 ROLE
-  getRole(): string | null {
-    const payload = this.getPayload();
-
-    return (
-      payload?.role ||
-      payload?.roles ||
-      null
-    );
-  }
-
-  // ⏰ TOKEN EXPIRADO?
-  isTokenExpired(token?: string): boolean {
-    const currentToken = token || this.getToken();
-
-    if (!currentToken) return true;
-
-    try {
-      const payload = this.decodeToken(currentToken);
-
-      if (!payload.exp) return true;
-
-      const expiry = payload.exp * 1000;
-      return Date.now() > expiry;
-
-    } catch {
-      return true;
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
+      localStorage.removeItem('email');
     }
   }
 
-  // 📦 PAYLOAD JWT
-  private getPayload(): any | null {
-    const token = this.getToken();
+  isLoggedIn(): boolean {
+    return !!this.getToken();
+  }
 
+  // 📜 Decodificação JWT
+  private decodeToken(): any {
+    const token = this.getToken();
     if (!token) return null;
 
     try {
-      return this.decodeToken(token);
+      return JSON.parse(atob(token.split('.')[1]));
     } catch {
       return null;
     }
   }
 
-  // 🔓 DECODIFICAR JWT
-  private decodeToken(token: string): any {
-    return JSON.parse(atob(token.split('.')[1]));
+  // 👤 Role do usuário
+  getUserRole(): string {
+    if (isPlatformBrowser(this.platformId)) {
+      const role = localStorage.getItem('role');
+      if (role) return role;
+    }
+
+    const payload = this.decodeToken();
+
+    return (
+      payload?.['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] ??
+      ''
+    );
+  }
+
+  // 📧 Email do usuário
+  getUserEmail(): string {
+    if (isPlatformBrowser(this.platformId)) {
+      return localStorage.getItem('email') ?? '';
+    }
+    return '';
   }
 }

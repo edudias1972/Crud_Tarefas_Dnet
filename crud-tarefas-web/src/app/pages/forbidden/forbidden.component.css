@@ -1,0 +1,15 @@
+forbidden-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.forbidden-container h1 {
+  color: #d9534f;
+}
+
+.forbidden-container a {
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #007bff;
+}

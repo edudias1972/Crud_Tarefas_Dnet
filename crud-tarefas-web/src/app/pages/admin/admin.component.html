@@ -1,0 +1,19 @@
+<div class="admin-container">
+  <h2>Painel Administrativo</h2>
+
+  <div *ngIf="role === 'Admin'; else acessoNegado">
+    <p>Bem-vindo, administrador!</p>
+
+    <button (click)="logout()">Sair</button>
+
+    <ul>
+      <li>Gerenciar usuários</li>
+      <li>Visualizar usuários e suas tarefas</li>
+      <li>Configurações avançadas</li>
+    </ul>
+  </div>
+
+  <ng-template #acessoNegado>
+    <p class="error">Acesso negado. Apenas administradores.</p>
+  </ng-template>
+</div>
