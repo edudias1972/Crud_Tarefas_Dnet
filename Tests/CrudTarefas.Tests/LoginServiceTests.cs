@@ -124,4 +124,25 @@ public class LoginServiceTests
         // Assert
         Assert.Null(resultado);
     }
+    [Fact]
+    public async Task RefreshTokenAsync_DeveRetornarNovoToken_QuandoTokenValido()
+    {
+        // 1. Arrange: Criar um usuário e um token válido no banco
+        var usuario = new Usuario { Email = "user@test.com", SenhaHash = "...", Role = "User" };
+        _context.Usuarios.Add(usuario);
+        var tokenVálido = new RefreshToken { Token = "token-ok", ExpiraEm = DateTime.UtcNow.AddHours(1), UsuarioId = usuario.Id };
+        _context.RefreshTokens.Add(tokenVálido);
+        await _context.SaveChangesAsync();
+
+        var novoToken = "novo-token-jwt";
+        _mockJwtService.Setup(x => x.GenerateJwtToken(It.IsAny<Usuario>())).Returns(novoToken);
+
+        // 2. Act
+        var resultado = await _service.RefreshTokenAsync("token-ok");
+
+        // 3. Assert
+        Assert.NotNull(resultado);
+        Assert.Equal(novoToken, resultado.Token);
+    }
+    //Backend testadp com sucesso, agora é só testar o frontend 
 }

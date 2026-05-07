@@ -1,9 +1,0 @@
-{
-  "routes": {
-    "/": {},
-    "/admin": {},
-    "/forbidden": {},
-    "/login": {},
-    "/tarefas": {}
-  }
-}

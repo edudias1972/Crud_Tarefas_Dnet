@@ -1,6 +1,0 @@
-{  
-  "scripts": {
-    "start": "ng serve",
-    "dev": "ng serve"
-  }
-}

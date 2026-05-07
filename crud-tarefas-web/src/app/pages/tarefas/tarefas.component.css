@@ -6,7 +6,7 @@
   background: #1976d2;
   color: white;
   padding: 12px 25px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .logo {
@@ -26,7 +26,7 @@
 
 .role {
   font-size: 13px;
-  background: rgba(255,255,255,0.2);
+  background: rgba(255, 255, 255, 0.2);
   padding: 4px 10px;
   border-radius: 8px;
 }
@@ -42,25 +42,40 @@
 }
 
 .btn-sair:hover {
-  background: #c62828;
+  background: #f07c7c;
 }
 
 
 /* CONTAINER */
+
 .container {
-  max-width: 700px;
-  margin: 30px auto;
-  padding: 25px;
-  border-radius: 16px;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 30px;
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+
+/* TÍTULO */
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 32px;
+  font-weight: 700;
+  color: #1e293b;
 }
 
 
 /* FORM */
+
 .form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  margin-bottom: 25px;
+  gap: 18px;
+  margin-bottom: 30px;
 }
 
 .full-width {
@@ -68,65 +83,451 @@
 }
 
 
-/* TAREFAS */
-.tarefa-card {
-  background: #f5f5f5;
-  padding: 15px;
+/* INPUTS */
+
+input {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #dcdcdc;
   border-radius: 12px;
-  margin-bottom: 15px;
+  outline: none;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+input:focus {
+  border-color: #3f51b5;
+  box-shadow: 0 0 8px rgba(63, 81, 181, 0.2);
+}
+
+
+/* BOTÕES */
+
+button {
+  border-radius: 10px !important;
+  font-weight: 600;
   transition: 0.2s;
 }
 
-.tarefa-card:hover {
-  transform: scale(1.01);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+button:hover {
+  transform: translateY(-2px);
 }
+
+
+/* KANBAN */
+
+.kanban {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-top: 30px;
+}
+
+
+/* COLUNAS */
+
+.coluna {
+  background: #f8fafc;
+  padding: 20px;
+  border-radius: 18px;
+  min-height: 450px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.04);
+}
+
+.coluna h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #334155;
+}
+
+
+/* CARD TAREFA */
+
+.tarefa-card {
+  background: #ffffff;
+  padding: 18px;
+  border-radius: 16px;
+  margin-bottom: 18px;
+  transition: 0.25s;
+  border-left: 6px solid #3f51b5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.tarefa-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+
+/* HEADER */
 
 .tarefa-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 8px;
 }
 
 .tarefa-header h3 {
   margin: 0;
+  font-size: 20px;
+  color: #1e293b;
 }
 
 
 /* STATUS */
+
 .status {
   font-size: 13px;
-  font-weight: bold;
-  color: #c4f0f7;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: #e0f2fe;
+  color: #0284c7;
 }
 
 .status.done {
-  color: #4caf50;
+  background: #dcfce7;
+  color: #16a34a;
 }
 
 
 /* DESCRIÇÃO */
+
 .descricao {
-  margin: 10px 0;
-  color: #555;
+  margin: 14px 0;
+  color: #64748b;
+  line-height: 1.6;
+  font-size: 15px;
 }
 
 
 /* AÇÕES */
+
 .acoes {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+  margin-top: 15px;
 }
 
-.kanban {
+
+/* RESPONSIVO */
+
+@media (max-width: 768px) {
+
+  .container {
+    margin: 15px;
+    padding: 20px;
+  }
+
+  .kanban {
+    grid-template-columns: 1fr;
+  }
+
+  h2 {
+    font-size: 26px;
+  }
+
+  .tarefa-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .acoes {
+    flex-direction: column;
+  }
+
+  .acoes button {
+    width: 100%;
+  }
+}
+
+/* CARD TAREFA */
+
+.tarefa-card {
+  position: relative;
+  background: linear-gradient(145deg, #ffffff, #f8fafc);
+  padding: 22px;
+  border-radius: 22px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  border-left: 8px solid #3f51b5;
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.06),
+    0 2px 4px rgba(0, 0, 0, 0.04);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+/* EFEITO HOVER */
+
+.tarefa-card:hover {
+  transform: translateY(-6px);
+  border-left-color: #5c6bc0;
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.12),
+    0 4px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* LINHA DECORATIVA */
+
+.tarefa-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 120px;
+  background: rgba(63, 81, 181, 0.06);
+  border-radius: 50%;
+  transform: translate(40%, -40%);
+}
+
+/* HEADER */
+
+.tarefa-header {
   display: flex;
-  gap: 20px;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 12px;
 }
 
-.coluna {
-  flex: 1;
-  padding: 10px;
-  background: #f5f5f5;
-  border-radius: 10px;
+/* TÍTULO */
+
+.tarefa-header h3 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.3;
+}
+
+/* STATUS */
+
+.status {
+  white-space: nowrap;
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: #dbeafe;
+  color: #2563eb;
+  text-transform: uppercase;
+}
+
+.status.done {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+/* DESCRIÇÃO */
+
+.descricao {
+  margin: 15px 0;
+  color: #64748b;
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+/* DATA */
+
+.data {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 6px 12px;
+  border-radius: 12px;
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* AÇÕES */
+
+.acoes {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+/* BOTÕES */
+
+.acoes button {
+  border: none;
+  padding: 10px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+/* CONCLUIR */
+
+.acoes button:nth-child(1) {
+  background: #dcfce7;
+  color: #0f0f0f;
+}
+
+.acoes button:nth-child(1):hover {
+  background: #bbf7d0;
+}
+
+/* EDITAR */
+
+.acoes button:nth-child(2) {
+  background: #edf4aee0;
+  color: #0f0f0f;
+}
+
+.acoes button:nth-child(2):hover {
+  background: #f3ee91;
+}
+
+/* EXCLUIR */
+
+.acoes button:nth-child(3) {
+  background: #f0b9b9;
+  color: #0f0f0f;
+}
+
+.acoes button:nth-child(3):hover {
+  background: #f46565;
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 768px) {
+
+  .tarefa-card {
+    padding: 18px;
+  }
+
+  .tarefa-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .acoes {
+    flex-direction: column;
+  }
+
+  .acoes button {
+    width: 100%;
+  }
+
+  /* BOTÃO ADICIONAR */
+
+  .btn-adicionar {
+    height: 52px;
+    padding: 0 28px;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+
+    background: linear-gradient(135deg, #3f51b5, #5c6bc0);
+    color: rgb(29, 10, 237);
+
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+
+    box-shadow:
+      0 6px 16px rgba(63, 81, 181, 0.25),
+      0 2px 4px rgba(0, 0, 0, 0.08);
+
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      filter 0.2s ease;
+  }
+
+  /* HOVER */
+
+  .btn-adicionar:hover {
+    transform: translateY(-3px);
+
+    background: linear-gradient(135deg, #3949ab, #536dfe);
+
+    box-shadow:
+      0 10px 24px rgba(63, 81, 181, 0.35),
+      0 4px 8px rgba(242, 236, 236, 0.12);
+
+    filter: brightness(1.03);
+  }
+
+  /* CLICK */
+
+  .btn-adicionar:active {
+    transform: scale(0.98);
+  }
+
+  /* FOCUS */
+
+  .btn-adicionar:focus {
+    outline: none;
+    box-shadow:
+      0 0 0 4px rgba(63, 81, 181, 0.2),
+      0 8px 20px rgba(63, 81, 181, 0.25);
+  }
+
+  /* BOTÕES PADRÃO */
+  .acoes button {
+    border: 2px solid color:#1d4ed8;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    color: white;
+  }
+
+  /* ✔ CONCLUIR (VERDE) */
+  .btn-concluir {
+    background: linear-gradient(135deg, #16a34a, #22c55e);
+    box-shadow: 0 6px 14px rgba(34, 197, 94, 0.25);
+  }
+
+  .btn-concluir:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(34, 197, 94, 0.35);
+  }
+
+  /* ✏ EDITAR (AMARELO) */
+  .btn-editar {
+    background: linear-gradient(135deg, #f59e0b, #fbbf24);
+    box-shadow: 0 6px 14px rgba(245, 158, 11, 0.25);
+    color: #1f2937;
+  }
+
+  .btn-editar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(245, 158, 11, 0.35);
+  }
+
+  /* 🗑 EXCLUIR (VERMELHO) */
+  .btn-excluir {
+    background: linear-gradient(135deg, #dc2626, #ef4444);
+    box-shadow: 0 6px 14px rgba(239, 68, 68, 0.25);
+  }
+
+  .btn-excluir:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(239, 68, 68, 0.35);
+  }
+
+  /* efeito click */
+  .acoes button:active {
+    transform: scale(0.95);
+  }
 }

@@ -1,5 +1,6 @@
 <nav class="navbar">
   <div class="logo">📦 Sistema Tarefas</div>
+
   <div class="user-area">
     <span class="user-name">👤 {{ usuario }}</span>
     <span class="role">🛡 {{ role }}</span>
@@ -12,32 +13,54 @@
   <h2>📋 Minhas Tarefas</h2>
 
   <!-- FILTRO -->
-  <input type="date" [(ngModel)]="filtroData" />
-  <button mat-button (click)="filtrarPorData()">Filtrar</button>
+  <div class="filtro">
+    <input type="date" [(ngModel)]="filtroData" />
+    <button mat-button (click)="filtrarPorData()">Filtrar</button>
+  </div>
 
   <hr />
 
   <!-- FORM -->
-  <form (ngSubmit)="editando ? salvarEdicao() : adicionarTarefa()">
+  <form class="form-tarefa"
+        (ngSubmit)="editando ? salvarEdicao() : adicionarTarefa()">
 
-    <input placeholder="Título" [(ngModel)]="tarefaForm.titulo" name="titulo" />
+    <input
+      placeholder="Título"
+      [(ngModel)]="tarefaForm.titulo"
+      name="titulo"
+    />
 
-    <input placeholder="Descrição" [(ngModel)]="tarefaForm.descricao" name="descricao" />
+    <input
+      placeholder="Descrição"
+      [(ngModel)]="tarefaForm.descricao"
+      name="descricao"
+    />
 
-    <input type="datetime-local" [(ngModel)]="tarefaForm.dataHora" name="dataHora" />
+    <input
+      type="datetime-local"
+      [(ngModel)]="tarefaForm.dataHora"
+      name="dataHora"
+    />
 
-    <button mat-raised-button color="primary">
+    <!-- BOTÃO PRINCIPAL -->
+    <button mat-raised-button class="btn-adicionar">
       {{ editando ? 'Salvar' : 'Adicionar' }}
     </button>
 
-    <button *ngIf="editando" type="button" (click)="cancelarEdicao()">
+    <!-- CANCELAR -->
+    <button
+      *ngIf="editando"
+      type="button"
+      class="btn-cancelar"
+      (click)="cancelarEdicao()">
       Cancelar
     </button>
+
   </form>
 
   <hr />
 
-  <!-- KANBAN -->
+  <h2>📅 Tarefas Agendadas</h2>
 
   <div class="kanban">
 
@@ -45,13 +68,25 @@
     <div class="coluna">
       <h3>⏳ Pendentes</h3>
 
-      <div *ngFor="let t of tarefasPendentes()">
+      <div class="tarefa-card" *ngFor="let t of tarefasPendentes()">
+
         <h4>{{ t.titulo }}</h4>
         <p>{{ t.descricao }}</p>
 
-        <button (click)="concluirTarefa(t)">✔ Concluir</button>
-        <button (click)="editarTarefa(t)">✏ Editar</button>
-        <button (click)="deletarTarefa(t.id)">🗑 Excluir</button>
+        <div class="acoes">
+          <button class="btn-concluir" (click)="concluirTarefa(t)">
+            ✔ Concluir
+          </button>
+
+          <button class="btn-editar" (click)="editarTarefa(t)">
+            ✏ Editar
+          </button>
+
+          <button class="btn-excluir" (click)="deletarTarefa(t.id)">
+            🗑 Excluir
+          </button>
+        </div>
+
       </div>
     </div>
 
@@ -59,9 +94,12 @@
     <div class="coluna">
       <h3>✅ Concluídas</h3>
 
-      <div *ngFor="let t of tarefasConcluidas()">
+      <div class="tarefa-card concluida"
+           *ngFor="let t of tarefasConcluidas()">
+
         <h4>{{ t.titulo }}</h4>
         <p>{{ t.descricao }}</p>
+
       </div>
     </div>
 
