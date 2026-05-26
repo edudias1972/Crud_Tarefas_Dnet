@@ -52,22 +52,91 @@ Funcionalidades
 
     Executar em container com Docker.
 
-Como executar
+Como executar o projeto 
+
 Com Docker
 
     Suba os serviços com Docker Compose.
 
     A aplicação será iniciada junto com o ambiente configurado no docker-compose.yml.
+    Para rodar a imagem banco de dados e a API 
+    
+    sudo docker compose up -d
 
 Localmente
 
-    Restaure os pacotes do projeto.
 
-    Execute as migrations, se necessário.
+ BACKEND :
 
-    Inicie a API pelo Program.cs.
+✅ Passo a passo
 
-Banco de dados
+    Certifique-se de estar na pasta do projeto (onde está o .csproj principal, por exemplo CrudTarefas.csproj):
+    bash
+
+cd ~/Documentos/Projeto_Crud_NET/Crud_Tarefas_Dnet
+
+ OBS.
+ 
+ O dotnet ef precisa estar instalado. Se não estiver, instale com:
+    bash
+
+dotnet tool install --global dotnet-ef
+
+Gerar uma migration nova (se você fez alterações nos Models ou no AppDbContext):
+    bash
+ Execute as migrations, se necessário.
+ 
+ dotnet ef migrations add NomeDaMigration --project Backend/src/CrudTarefas.csproj
+
+        Substitua NomeDaMigration por algo descritivo, como AddUsuario Role ou UpdateTarefaFields.
+
+    Aplicar as migrations no banco de dados:
+    bash
+dotnet ef database update --project Backend/src/CrudTarefas.csproj
+
+ Restaure os pacotes do projeto.
+
+🔎 Observações importantes
+
+Se você estiver rodando pelo projeto da raiz (CrudTarefas.csproj), ajuste o caminho:
+    bash
+Atualizando o Banco de dados :
+
+dotnet ef migrations add InitialCreate --project CrudTarefas.csproj
+
+dotnet ef database update --project CrudTarefas.csproj
+
+Para rodar o projeto : dotnet run
+ 
+eduardo@eduardo-IdeaPad-Gaming-3-15IMH05:~/Documentos/Projeto_Crud_NET/Crud_Tarefas_Dnet$ dotnet run 
+
+Building...
+info: Microsoft.Hosting.Lifetime[1
+      Now listening on: http://localhost:5050
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /home/eduardo/Documentos/Projeto_Crud_NET/Crud_Tarefas_Dnet
+
+Frontend :      
+Rodando Frontend : Angular -  ng serve 
+eduardo@eduardo-IdeaPad-Gaming-3-15IMH05:~/Documentos/Projeto_Crud_NET/Crud_Tarefas_Dnet/crud-tarefas-web$ ng serve
+Initial chunk files | Names         |  Raw size
+main.js             | main          | 103.51 kB | 
+styles.css          | styles        |   8.79 kB | 
+
+                    | Initial total | 112.29 kB
+
+Application bundle generation complete. [2.546 seconds] - 2026-05-26T19:08:51.293Z
+
+Watch mode enabled. Watching for file changes...
+NOTE: Raw file sizes do not reflect development server per-request transformations.
+  ➜  Local:   http://localhost:4200/
+  ➜  press h + enter to show help
+
+  
 
 O projeto contém migrações InitialCreate e AddDatasNaTarefa, o que indica evolução do schema ao longo do desenvolvimento e uso de versionamento de banco com EF Core.
 O AppDbContext centraliza o acesso ao banco e serve como ponto de integração entre os modelos e a persistência.
