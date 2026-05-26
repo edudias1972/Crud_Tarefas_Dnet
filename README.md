@@ -19,23 +19,11 @@ Tecnologias
 
 Estrutura do projeto
 
-text
-├── CrudTarefas.csproj
-├── Crud_Tarefas_Dnet.sln
-├── Dockerfile
-├── docker-compose.yml
-└── src
-    ├── Controllers
-    │   └── TarefasController.cs
-    ├── Data
-    │   ├── AppDbContext.cs
-    │   └── Migrations
-    ├── Models
-    │   └── Tarefa.cs
-    ├── Program.cs
-    └── Service
-        ├── ITarefaService.cs
-        └── TarefaService.cs
+Pasta Raiz ./      
+eduardo@eduardo-IdeaPad-Gaming-3-15IMH05:~/Documentos/Projeto_Crud_NET/Crud_Tarefas_Dnet$ ls
+Backend             CrudTarefas.sln        Dockerfile  README.md  app.db            bin               cypress             node_modules  out   package.json
+CrudTarefas.csproj  Crud_Tarefas_Dnet.sln  Properties  Tests      appsettings.json  crud-tarefas-web  docker-compose.yml  obj                 package-lock.json
+
 
 A presença de TarefasController, TarefaService, AppDbContext e Tarefa mostra uma divisão típica entre entrada HTTP, regra de negócio, acesso a dados e modelo de domínio.
 Funcionalidades
@@ -86,11 +74,9 @@ Gerar uma migration nova (se você fez alterações nos Models ou no AppDbContex
     bash
  Execute as migrations, se necessário.
  
- dotnet ef migrations add NomeDaMigration --project Backend/src/CrudTarefas.csproj
-
-        Substitua NomeDaMigration por algo descritivo, como AddUsuario Role ou UpdateTarefaFields.
-
-    Aplicar as migrations no banco de dados:
+dotnet ef migrations add InitialCreate --project CrudTarefas.csproj
+        
+Aplicar as migrations no banco de dados:
     bash
 dotnet ef database update --project Backend/src/CrudTarefas.csproj
 
